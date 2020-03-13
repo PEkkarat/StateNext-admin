@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const UsersToolbar = props => {
+const ReportsToolbar = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
@@ -42,8 +42,9 @@ const UsersToolbar = props => {
         <span className={classes.spacer} />
         <Button className={classes.importButton}></Button>
         <Button className={classes.exportButton}></Button>
+        
         <Button
-          color="primary"
+          color=""
           variant="contained"
         >
           ลบ
@@ -52,15 +53,15 @@ const UsersToolbar = props => {
       <div className={classes.row}>
         <SearchInput
           className={classes.searchInput}
-          placeholder="ค้นหาผู้ใช้"
+          placeholder="ค้นหาประกาศ"
         />
       </div>
     </div>
   );
 };
 
-UsersToolbar.propTypes = {
+ReportsToolbar.propTypes = {
   className: PropTypes.string
 };
 
-export default UsersToolbar;
+export default ReportsToolbar;

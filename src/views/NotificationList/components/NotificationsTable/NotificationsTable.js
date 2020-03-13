@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const UsersTable = props => {
+const NotificationsTable = props => {
   const { className, users, ...rest } = props;
 
   const classes = useStyles();
@@ -114,12 +114,13 @@ const UsersTable = props => {
                       onChange={handleSelectAll}
                     />
                   </TableCell>
-                  <TableCell>ชื่อ</TableCell>
-                  <TableCell>อีเมล</TableCell>
-                  <TableCell>ที่อยู่</TableCell>
-                  <TableCell>เบอร์โทรศัพท์</TableCell>
-                  <TableCell>วันที่ลงทะเบียน</TableCell>
-                  <TableCell>สถานะ</TableCell>
+                  <TableCell>การแจ้งเตือน</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell>ประเภท</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -138,26 +139,12 @@ const UsersTable = props => {
                         value="true"
                       />
                     </TableCell>
-                    <TableCell>
-                      <div className={classes.nameContainer}>
-                        <Avatar
-                          className={classes.avatar}
-                          src={user.avatarUrl}
-                        >
-                          {getInitials(user.name)}
-                        </Avatar>
-                        <Typography variant="body1">{user.name}</Typography>
-                      </div>
-                    </TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>
-                      {user.address.city}, {user.address.state},{' '}
-                      {user.address.country}
-                    </TableCell>
-                    <TableCell>{user.phone}</TableCell>
-                    <TableCell>
-                      {moment(user.createdAt).format('DD/MM/YYYY')}
-                    </TableCell>
+                    <TableCell>{user.title}</TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
+                    <TableCell></TableCell>
                     <TableCell>{user.status}</TableCell>
                   </TableRow>
                 ))}
@@ -181,9 +168,9 @@ const UsersTable = props => {
   );
 };
 
-UsersTable.propTypes = {
+NotificationsTable.propTypes = {
   className: PropTypes.string,
   users: PropTypes.array.isRequired
 };
 
-export default UsersTable;
+export default NotificationsTable;
