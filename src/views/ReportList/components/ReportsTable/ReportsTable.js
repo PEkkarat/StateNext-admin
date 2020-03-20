@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/styles';
+
 import {
   Card,
   CardActions,
@@ -16,10 +17,15 @@ import {
   TableHead,
   TableRow,
   Typography,
-  TablePagination
+  TablePagination,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText
 } from '@material-ui/core';
 
 import { getInitials } from 'helpers';
+import SaveFile from './components/SaveFile';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -33,13 +39,20 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center'
   },
-  avatar: {
-    marginRight: theme.spacing(2)
-  },
+  // avatar: {
+  //   marginRight: theme.spacing(2)
+  // },
   actions: {
     justifyContent: 'flex-end'
-  }
+  },
+  image: {
+    height: 48,
+    width: 48
+  },
+
 }));
+
+
 
 const ReportsTable = props => {
   const { className, users, ...rest } = props;
@@ -116,11 +129,12 @@ const ReportsTable = props => {
                   </TableCell>
                   <TableCell>เรื่องร้องเรียน</TableCell>
                   <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                  <TableCell>ประเภท</TableCell>
                   <TableCell>ผู้ใช้</TableCell>
+                  <TableCell>ตัวอย่างไฟล์</TableCell>
+                  <TableCell>ดาวน์โหลดไฟล์</TableCell>
+
+
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -141,11 +155,44 @@ const ReportsTable = props => {
                     </TableCell>
                     <TableCell>{user.title}</TableCell>
                     <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
+                    <TableCell>{user.type}</TableCell>
                     <TableCell>{user.name}</TableCell>
+                    <TableCell>
+                      <Avatar
+                        className={classes.image}
+                        src={user.avatarUrl}
+                        
+                      >
+                        {getInitials(user.name)}
+                      </Avatar>
+                      
+                      {/* <List>
+                        {avatars.map((avatar, i) => (
+                          <ListItem
+                            divider={i < avatars.length - 1}
+                            key={avatar.id}
+                          >
+                            <ListItemAvatar>
+                              <img
+                                alt="Avatar"
+                                className={classes.image}
+                                src={avatar.imageUrl}
+                              />
+                            </ListItemAvatar>
+                            <ListItemText
+                              primary={avatar.name}
+                              
+                            />
+                            
+                          </ListItem>
+                        ))}
+                      </List> */}
+                    </TableCell>
+                    <TableCell>
+                      <SaveFile />
+                      
+                    </TableCell>
+
                   </TableRow>
                 ))}
               </TableBody>

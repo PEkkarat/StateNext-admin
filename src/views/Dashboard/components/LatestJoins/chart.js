@@ -5,7 +5,7 @@ export const data = {
   datasets: [
     {
       label: 'สัปดาห์นี้',
-      backgroundColor: palette.primary.main,
+      backgroundColor: palette.icon,
       data: [18, 5, 19, 27, 29, 19, 20]
     },
     {

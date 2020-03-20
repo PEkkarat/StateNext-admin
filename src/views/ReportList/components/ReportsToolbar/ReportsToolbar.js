@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Button } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+// import Button from '@material-ui/core/Button';
 
 import { SearchInput } from 'components';
 
@@ -25,13 +30,38 @@ const useStyles = makeStyles(theme => ({
   },
   searchInput: {
     marginRight: theme.spacing(1)
-  }
+  },
+  button: {
+    display: 'block',
+    marginTop: theme.spacing(2),
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    marginRight: theme.spacing(3),
+    minWidth: 120,
+  },
+
 }));
 
 const ReportsToolbar = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
+
+  const [type, setType] = React.useState('');
+  const [open, setOpen] = React.useState(false);
+
+  const handleChange = event => {
+    setType(event.target.value);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <div
@@ -41,8 +71,31 @@ const ReportsToolbar = props => {
       <div className={classes.row}>
         <span className={classes.spacer} />
         <Button className={classes.importButton}></Button>
-        <Button className={classes.exportButton}></Button>
+        {/* <Button className={classes.formControl}> */}
+        <FormControl className={classes.formControl}>
+            <InputLabel id="demo-controlled-open-select-label">เลือกประเภท</InputLabel>
+            <Select
+              // labelId="demo-controlled-open-select-label"
+              // id="demo-controlled-open-select"
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              value={type}
+              onChange={handleChange}
+            >
+              <MenuItem value="">
+                <em>ไม่เลือก</em>
+              </MenuItem>
+              <MenuItem value={5}>ทั้งหมด</MenuItem>
+              <MenuItem value={10}>ให้ข้อเสนอแนะเกี่ยวกับผลิตภัณฑ์</MenuItem>
+              <MenuItem value={20}>รายงานบัก</MenuItem>
+              <MenuItem value={30}>รายงานผู้ใช้</MenuItem>
+            </Select>
+          </FormControl>
+        {/* </Button> */}
+          
         
+
         <Button
           color=""
           variant="contained"

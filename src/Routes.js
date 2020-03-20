@@ -15,8 +15,9 @@ import {
   PostList as PostListView,
   NotificationList as NotificationListView,
   ReportList as ReportListView,
-  
-  
+  NewReport as NewReport,
+
+
 
   SignUp as SignUpView,
   SignIn as SignInView,
@@ -49,22 +50,28 @@ const Routes = () => {
         exact
         layout={MainLayout}
         path="/posts"
-      />  
+      />
 
       <RouteWithLayout
         component={NotificationListView}
         exact
         layout={MainLayout}
         path="/Notifications"
-      />  
+      />
 
       <RouteWithLayout
         component={ReportListView}
         exact
         layout={MainLayout}
         path="/Reports"
-      />  
+      />
 
+      <RouteWithLayout
+        component={NewReport}
+        exact
+        layout={MainLayout}
+        path="/NewReport"
+      />
 
 
       {/* <RouteWithLayout

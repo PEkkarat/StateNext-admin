@@ -11,3 +11,4 @@ export { default as UserList } from './UserList';
 export { default as PostList } from './PostList';
 export { default as NotificationList } from './NotificationList';
 export { default as ReportList } from './ReportList';
+export { default as NewReport } from './NewReport';

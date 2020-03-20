@@ -6,6 +6,7 @@ import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 // import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ReportIcon from '@material-ui/icons/Report';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%'
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.error.main,
+    backgroundColor: theme.palette.icon,
     height: 56,
     width: 56
   },
