@@ -43,6 +43,9 @@ const Main = props => {
 
   const shouldOpenSidebar = isDesktop ? true : openSidebar;
 
+
+  
+
   return (
     <div
       className={clsx({

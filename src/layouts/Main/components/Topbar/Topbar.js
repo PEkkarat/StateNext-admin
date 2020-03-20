@@ -37,6 +37,15 @@ const Topbar = props => {
       className={clsx(classes.root, className)}
     >
       <Toolbar >
+      <Hidden lgUp>
+          <IconButton
+            color="4f4f4f"
+            onClick={onSidebarOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+          
+        </Hidden>
         <RouterLink to="/">
           {/* <img
             alt="Logo"
@@ -82,14 +91,8 @@ const Topbar = props => {
           </RouterLink>
 
         </Hidden>
-        <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onSidebarOpen}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
+
+        
       </Toolbar>
     </AppBar>
   );
