@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
+import API from '../../services'
 
 import {
   TotalUsers,
@@ -24,6 +25,18 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles();
+  
+  useEffect(() => {
+
+    const fetchSummary = async() => {
+      
+      console.log(await API.getSummary());
+      
+    }
+
+    fetchSummary()
+
+  })
 
   return (
     <div className={classes.root}>
