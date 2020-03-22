@@ -20,9 +20,11 @@ const useStyles = makeStyles(theme => ({
   importButton: {
     marginRight: theme.spacing(1)
   },
-  exportButton: {
-    marginRight: theme.spacing(1)
+
+  button: {
+    marginRight: theme.spacing(1),
   },
+
   searchInput: {
     marginRight: theme.spacing(1)
   }
@@ -40,27 +42,28 @@ const NotificationsToolbar = props => {
     >
       <div className={classes.row}>
         <span className={classes.spacer} />
-        <Button className={classes.importButton}></Button>
-        <Button className={classes.exportButton}></Button>
-        <Button 
-          className={classes.importButton}
-          color=""
-          variant="contained"
-        >
-          ลบ
-        </Button>
-        <Button
-          color=""
-          variant="contained"
-        >
-          ล้างการแจ้งเตือน
-        </Button>
+
       </div>
       <div className={classes.row}>
         <SearchInput
           className={classes.searchInput}
           placeholder="ค้นหาประกาศ"
         />
+
+        <span className={classes.spacer} />
+        <Button
+          className={classes.button}
+          color="red"
+          variant="contained"
+        >
+          ลบ
+        </Button>
+        <Button
+          color="primary"
+          variant="contained"
+        >
+          ล้างการแจ้งเตือน
+        </Button>
       </div>
     </div>
   );

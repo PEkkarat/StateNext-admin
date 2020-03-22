@@ -7,7 +7,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-// import Button from '@material-ui/core/Button';
 
 import { SearchInput } from 'components';
 
@@ -69,46 +68,49 @@ const ReportsToolbar = props => {
       className={clsx(classes.root, className)}
     >
       <div className={classes.row}>
-        <span className={classes.spacer} />
-        <Button className={classes.importButton}></Button>
-        {/* <Button className={classes.formControl}> */}
-        <FormControl className={classes.formControl}>
-            <InputLabel id="demo-controlled-open-select-label">เลือกประเภท</InputLabel>
-            <Select
-              // labelId="demo-controlled-open-select-label"
-              // id="demo-controlled-open-select"
-              open={open}
-              onClose={handleClose}
-              onOpen={handleOpen}
-              value={type}
-              onChange={handleChange}
-            >
-              <MenuItem value="">
-                <em>ไม่เลือก</em>
-              </MenuItem>
-              <MenuItem value={5}>ทั้งหมด</MenuItem>
-              <MenuItem value={10}>ให้ข้อเสนอแนะเกี่ยวกับผลิตภัณฑ์</MenuItem>
-              <MenuItem value={20}>รายงานบัก</MenuItem>
-              <MenuItem value={30}>รายงานผู้ใช้</MenuItem>
-            </Select>
-          </FormControl>
-        {/* </Button> */}
-          
-        
 
+
+      </div>
+
+      <div className={classes.row}>
+
+        <SearchInput
+          className={classes.searchInput}
+          placeholder="ค้นหาประกาศ"
+        />
+
+        <FormControl className={classes.formControl}>
+          <InputLabel id="demo-controlled-open-select-label">เลือกประเภท</InputLabel>
+          <Select
+            labelId="demo-controlled-open-select-label"
+            id="demo-controlled-open-select"
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            value={type}
+            onChange={handleChange}
+          >
+            <MenuItem value="">
+              <em>ไม่เลือก</em>
+            </MenuItem>
+            
+            <MenuItem value={5}>ทั้งหมด</MenuItem>
+            <MenuItem value={10}>ให้ข้อเสนอแนะเกี่ยวกับผลิตภัณฑ์</MenuItem>
+            <MenuItem value={20}>รายงานบัก</MenuItem>
+            <MenuItem value={30}>รายงานผู้ใช้</MenuItem>
+          </Select>
+        </FormControl>
+
+        <span className={classes.spacer} />
         <Button
           color=""
           variant="contained"
         >
           ลบ
         </Button>
+
       </div>
-      <div className={classes.row}>
-        <SearchInput
-          className={classes.searchInput}
-          placeholder="ค้นหาประกาศ"
-        />
-      </div>
+
     </div>
   );
 };

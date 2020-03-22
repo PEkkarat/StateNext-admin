@@ -42,11 +42,22 @@ const PostsToolbar = props => {
         <span className={classes.spacer} />
         <Button className={classes.importButton}></Button>
         <Button className={classes.exportButton}></Button>
-        <Button 
+
+      </div>
+      <div className={classes.row}>
+        <SearchInput
+          className={classes.searchInput}
+          placeholder="ค้นหาประกาศ"
+        />
+
+        <span className={classes.spacer} />
+
+        <Button
           className={classes.importButton}
           color=""
           variant="contained"
         >
+
           ลบ
         </Button>
         <Button
@@ -55,12 +66,6 @@ const PostsToolbar = props => {
         >
           อนุมัติ
         </Button>
-      </div>
-      <div className={classes.row}>
-        <SearchInput
-          className={classes.searchInput}
-          placeholder="ค้นหาประกาศ"
-        />
       </div>
     </div>
   );

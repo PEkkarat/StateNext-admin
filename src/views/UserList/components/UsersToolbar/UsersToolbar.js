@@ -42,18 +42,21 @@ const UsersToolbar = props => {
         <span className={classes.spacer} />
         <Button className={classes.importButton}></Button>
         <Button className={classes.exportButton}></Button>
-        <Button
-          color="primary"
-          variant="contained"
-        >
-          ลบ
-        </Button>
+        
       </div>
       <div className={classes.row}>
         <SearchInput
           className={classes.searchInput}
           placeholder="ค้นหาผู้ใช้"
         />
+        <span className={classes.spacer} />
+
+        <Button
+          color="primary"
+          variant="contained"
+        >
+          ลบ
+        </Button>
       </div>
     </div>
   );

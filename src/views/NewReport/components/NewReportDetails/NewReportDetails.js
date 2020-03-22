@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
-  CardHeader,
+  // CardHeader,
   CardContent,
   CardActions,
   Divider,
@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     marginTop: theme.spacing(1)
   },
-  Button : {
-    justifyContent : "end"
+  Button: {
+    justifyContent: "end"
   },
 }));
 
@@ -63,6 +63,7 @@ const NewReportDetails = props => {
             value={values.password}
             variant="outlined"
           /> */}
+          
           <Grid
             container
             spacing={4}
@@ -83,25 +84,29 @@ const NewReportDetails = props => {
               md={12}
               xs={12}
             >
-              <TextField fullWidth multiline rows="4" id="outlined-multiline-static" label="ให้ข้อเสนอแนะ หรือแชร์ประสบการณ์ของคุณกับเรา อะไรที่ดี อะไรที่น่าจะดีกว่านี้ ?.." variant="outlined" />
+              <TextField fullWidth multiline
+                rows="4" id="outlined-multiline-static"
+                label="ให้ข้อเสนอแนะ หรือแชร์ประสบการณ์ของคุณกับเรา อะไรที่ดี อะไรที่น่าจะดีกว่านี้ ?.."
+                variant="outlined" />
+
             </Grid>
           </Grid>
 
           <Grid
-              item
-              md={12}
-              xs={12}
-            > 
+            item
+            md={12}
+            xs={12}
+          >
             <CardActions>
-                <UploadButtons />
+              <UploadButtons />
             </CardActions>
-              
-            </Grid>
+
+          </Grid>
 
         </CardContent>
         <Divider />
         <CardActions>
-          
+
           <Button
             color="primary"
             variant="outlined"
