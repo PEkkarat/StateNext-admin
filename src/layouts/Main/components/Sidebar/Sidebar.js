@@ -9,14 +9,14 @@ import PeopleIcon from '@material-ui/icons/People';
 // import TextFieldsIcon from '@material-ui/icons/TextFields';
 // import ImageIcon from '@material-ui/icons/Image';
 // import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import SettingsIcon from '@material-ui/icons/Settings';
+// import SettingsIcon from '@material-ui/icons/Settings';
 // import LockOpenIcon from '@material-ui/icons/LockOpen';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ReportIcon from '@material-ui/icons/Report';
 
 import { Profile, SidebarNav } from './components';
-// import { Profile, SidebarNav, UpgradePlan } from './components';
+
 
 const useStyles = makeStyles(theme => ({
   drawer: {

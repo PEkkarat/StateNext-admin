@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid,Typography, CardContent ,Card } from '@material-ui/core';
+import { Grid,Typography ,Card } from '@material-ui/core';
 
 import {  NewReportDetails , SelectTypeReport  } from './components';
 

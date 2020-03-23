@@ -54,15 +54,7 @@ const NewReportDetails = props => {
       <form>
 
         <CardContent>
-          {/* <TextField
-            fullWidth
-            label="Password"
-            name="password"
-            onChange={handleChange}
-            type="password"
-            value={values.password}
-            variant="outlined"
-          /> */}
+          
           
           <Grid
             container
