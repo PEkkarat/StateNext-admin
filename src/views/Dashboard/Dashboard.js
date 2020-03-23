@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import API from '../../services'
@@ -24,19 +24,25 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Dashboard = () => {
+
+  const [summary, setSummary] = useState({})
   const classes = useStyles();
   
   useEffect(() => {
 
     const fetchSummary = async() => {
       
-      console.log(await API.getSummary());
+      let sum = await API.getSummary()
+      setSummary(sum)
       
     }
 
     fetchSummary()
 
-  })
+  }, [])
+
+  console.log(summary);
+  
 
   return (
     <div className={classes.root}>
@@ -46,55 +52,55 @@ const Dashboard = () => {
       >
         <Grid
           item
-          lg={3}
+          lg={4}
           sm={6}
-          xl={3}
+          xl={4}
           xs={12}
         >
         
-          <TotalUsers />
+          <TotalUsers user={summary.user} />
         
         </Grid>
         <Grid
           item
-          lg={3}
+          lg={4}
           sm={6}
-          xl={3}
+          xl={4}
           xs={12}
         >
 
-          <TotalPost />
+          <TotalPost post={summary.post} />
         </Grid>
 
-        <Grid
+        {/* <Grid
           item
           lg={3}
           sm={6}
           xl={3}
           xs={12}
         >
-          <TotalNotification/>
-          {/* <TasksProgress /> */}
-        </Grid>
+          <TotalNotification notification={summary.notification}/>
+        </Grid> */}
         <Grid
           item
-          lg={3}
+          lg={4}
           sm={6}
-          xl={3}
+          xl={4}
           xs={12}
         >
-          <TotalReport/>
+          <TotalReport report={summary.report} />
           {/* <TotalProfit /> */}
         </Grid>
         <Grid
           item
-          lg={8}
+          lg={12}
           md={12}
-          xl={9}
+          xl={12}
           xs={12}
         >
-          <LatestJoins />
+          <LatestJoins acquisition={summary.acquisition} />
         </Grid>
+
         {/* <Grid
           item
           lg={4}
@@ -102,26 +108,17 @@ const Dashboard = () => {
           xl={3}
           xs={12}
         >
-          <UsersByDevice />
+          <LatestUsers newUser={summary.newUser} />
         </Grid> */}
-        <Grid
-          item
-          lg={4}
-          md={6}
-          xl={3}
-          xs={12}
-        >
-          <LatestUsers />
-        </Grid>
         
         <Grid
           item
           lg={12}
           md={12}
-          xl={9}
+          xl={12}
           xs={12}
         >
-          <Rank />
+          <Rank post={summary.top_post} />
         </Grid>
       </Grid>
     </div>
