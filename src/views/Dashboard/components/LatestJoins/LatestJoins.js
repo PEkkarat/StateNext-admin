@@ -43,7 +43,7 @@ const LatestJoins = props => {
             size="small"
             variant="text"
           >
-            7 วันที่ผ่านมา<ArrowDropDownIcon />
+            7 วันที่ผ่านมา
           </Button>
         }
         title="การเข้าร่วมแพลตฟอร์ม"

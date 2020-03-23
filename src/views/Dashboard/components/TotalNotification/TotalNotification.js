@@ -41,9 +41,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TotalNotification = props => {
-  const { className, ...rest } = props;
+  const { className, notification,...rest } = props;
 
   const classes = useStyles();
+  const count = notification ? notification.count : 0
 
   return (
     <Card
@@ -64,7 +65,7 @@ const TotalNotification = props => {
             >
               การแจ้งเตือน
             </Typography>
-            <Typography variant="h3">2</Typography>
+            <Typography variant="h3">{count}</Typography>
           </Grid>
 
           <Grid item>

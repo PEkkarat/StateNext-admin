@@ -13,6 +13,7 @@ const getSummary = async() => {
     let twoWeenAgo = moment().subtract(2, 'weeks').toISOString()
     let now = moment().toISOString()
 
+    const AllUser = axios.get(UserApi + `/count`)
     const UserCurMonth = axios.get(UserApi + `/count?createdAt=$date=${monthAgo},${now}`)
     const UserPrevMonth = axios.get(UserApi + `/count?createdAt=$date=${twoMonthAgo},${now}`)
 
@@ -28,6 +29,7 @@ const getSummary = async() => {
     const TopPost = axios.get(PostApi + `/report`)
 
     let [
+        allUser,
         userCurMonth,
         userPrevMonth,
         postCurMonth,
@@ -37,6 +39,7 @@ const getSummary = async() => {
         userCurPage,
         topPost
     ] = await Promise.all([
+        AllUser,
         UserCurMonth,
         UserPrevMonth,
         PostCurMonth,
@@ -56,6 +59,7 @@ const getSummary = async() => {
         user: {
             count: userCurrentMonth.count,
             diff: userCurrentMonth.count - userPrevMonth.data.count,
+            max: allUser.data.count
         },
         post: {
             count: postCurrentMonth.count,

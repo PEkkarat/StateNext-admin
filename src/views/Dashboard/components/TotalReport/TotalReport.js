@@ -42,9 +42,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TotalReport = props => {
-  const { className, ...rest } = props;
+  const { className, report, ...rest } = props;
 
   const classes = useStyles();
+  const count = report ? report.count : 0
 
   return (
     <Card
@@ -65,7 +66,7 @@ const TotalReport = props => {
             >
               เรื่องร้องเรียน
             </Typography>
-            <Typography variant="h3">7</Typography>
+            <Typography variant="h3">{count}</Typography>
           </Grid>
 
           <Grid item>

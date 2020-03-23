@@ -19,7 +19,10 @@ import {
   Tooltip,
   TableSortLabel
 } from '@material-ui/core';
-// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import uuid from 'uuid/v1';
+
 
 import mockData from './data';
 import { StatusBullet } from 'components';
@@ -51,11 +54,24 @@ const statusColors = {
 };
 
 const Rank = props => {
-  const { className, ...rest } = props;
+  let { className, post, ...rest } = props;
 
   const classes = useStyles();
 
-  const [orders] = useState(mockData);
+  post = post || []
+  let orders = post.map((p, index) => {
+
+    return {
+        id: uuid(),
+        ref: `${index + 1}`,
+        customer: {
+          name: p.title
+        },
+        createdAt: new Date(p.createdAt).getTime(),
+        status: p.status
+    }
+
+  })
 
   return (
     <Card
@@ -63,15 +79,15 @@ const Rank = props => {
       className={clsx(classes.root, className)}
     >
       <CardHeader
-        action={
-          <Button
-            color="primary"
-            size="small"
-            variant="outlined"
-          >
-            refresh
-          </Button>
-        }
+        // action={
+        //   <Button
+        //     color="primary"
+        //     size="small"
+        //     variant="outlined"
+        //   >
+        //     refresh
+        //   </Button>
+        // }
         title="3 อับดับที่มีการเข้าชมสูงสุด"
       />
       <Divider />
