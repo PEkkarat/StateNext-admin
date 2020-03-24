@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import { Button } from '@material-ui/core';
+import { Button, FormControlLabel, Checkbox } from '@material-ui/core';
 
 import { SearchInput } from 'components';
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PostsToolbar = props => {
-  const { className, onSearch, onDelete, onApprove,...rest } = props;
+  const { className, onSearch, onDelete, onApprove, onPendingOnly, pendingOnly, ...rest } = props;
 
   const classes = useStyles();
 
@@ -50,6 +50,18 @@ const PostsToolbar = props => {
           placeholder="ค้นหาประกาศ"
           onChange={onSearch}
         />
+
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={pendingOnly}
+              onChange={onPendingOnly}
+              name="checkedB"
+              color="primary"
+            />
+          }
+          label="Pending Only"
+        />  
 
         <span className={classes.spacer} />
 

@@ -34,17 +34,6 @@ const NewReportDetails = props => {
 
   const classes = useStyles();
 
-  const [values, setValues] = useState({
-    password: '',
-    confirm: ''
-  });
-
-  const handleChange = event => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
-    });
-  };
 
   return (
     <Card

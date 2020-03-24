@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 import { PostsToolbar, PostsTable } from './components';
-import mockData from './data';
 import API from '../../services'
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +22,7 @@ const PostList = () => {
   const [page, setPage] = useState(0);
   const [maxSize, setMax] = useState(0)
   const [posts, setPosts] = useState([])
+  const [isPending, setPending] = useState(false)
 
   const selectionProp = [selectedPosts, setSelectedPosts]
   const pageProp = [page, setPage]
@@ -33,10 +33,19 @@ const PostList = () => {
 
     fetchData()
 
-  },[rowsPerPage, page, search])
+  },[rowsPerPage, page, search, isPending])
 
   const fetchData = async() => {
+
     let query = search ? `title=$reg=${search}.*` : undefined
+
+    if (isPending) {
+      let q = "status=pending"
+      if (query) query += `&`
+      else query = ""
+      query += q
+    }
+    
     let res = await API.getPost(page + 1, rowsPerPage, query)
 
     let data = res.data
@@ -77,9 +86,13 @@ const PostList = () => {
 
   }
 
+  const onPending = () => {
+    setPending(!isPending)
+  }
+
   return (
     <div className={classes.root}>
-      <PostsToolbar onSearch={onSearch} onApprove={onApprove} onDelete={onDelete} />
+      <PostsToolbar onSearch={onSearch} onApprove={onApprove} onDelete={onDelete} onPendingOnly={onPending} pendingOnly={isPending} />
       <div className={classes.content}>
         <PostsTable
           selectionUser={selectionProp}
