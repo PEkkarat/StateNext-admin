@@ -42,13 +42,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PostsTable = props => {
-  const { className, users, ...rest } = props;
+  const { className, users, selectionUser, pageProp, maxProp, rowsProp, ...rest } = props;
 
   const classes = useStyles();
 
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [page, setPage] = useState(0);
+  const [selectedUsers, setSelectedUsers] = selectionUser
+  const [rowsPerPage, setRowsPerPage] = rowsProp
+  const [page, setPage] = pageProp
+  const [maxSize, ] = maxProp
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -116,9 +117,6 @@ const PostsTable = props => {
                   </TableCell>
                   <TableCell>ประกาศ</TableCell>
                   <TableCell>ประเภท</TableCell>
-                  {/* <TableCell>ที่อยู่</TableCell> */}
-                  <TableCell>เบอร์โทรศัพท์</TableCell>
-                  {/* <TableCell>วันที่ลงทะเบียน</TableCell> */}
                   <TableCell>สถานะ</TableCell>
                 </TableRow>
               </TableHead>
@@ -141,7 +139,6 @@ const PostsTable = props => {
                     
                     <TableCell>{user.title}</TableCell>
                     <TableCell>{user.type}</TableCell>
-                    <TableCell>{user.tel}</TableCell>
                     <TableCell>{user.status}</TableCell>
                   </TableRow>
                 ))}
@@ -153,7 +150,7 @@ const PostsTable = props => {
       <CardActions className={classes.actions}>
         <TablePagination
           component="div"
-          count={users.length}
+          count={maxSize}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           page={page}

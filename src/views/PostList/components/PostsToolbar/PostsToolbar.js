@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PostsToolbar = props => {
-  const { className, ...rest } = props;
+  const { className, onSearch, onDelete, onApprove,...rest } = props;
 
   const classes = useStyles();
 
@@ -48,6 +48,7 @@ const PostsToolbar = props => {
         <SearchInput
           className={classes.searchInput}
           placeholder="ค้นหาประกาศ"
+          onChange={onSearch}
         />
 
         <span className={classes.spacer} />
@@ -56,6 +57,7 @@ const PostsToolbar = props => {
           className={classes.importButton}
           color=""
           variant="contained"
+          onClick={onDelete}
         >
 
           ลบ
@@ -63,6 +65,7 @@ const PostsToolbar = props => {
         <Button
           color=""
           variant="contained"
+          onClick={onApprove}
         >
           อนุมัติ
         </Button>

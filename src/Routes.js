@@ -52,12 +52,12 @@ const Routes = () => {
         path="/posts"
       />
 
-      <RouteWithLayout
+      {/* <RouteWithLayout
         component={NotificationListView}
         exact
         layout={MainLayout}
         path="/Notifications"
-      />
+      /> */}
 
       <RouteWithLayout
         component={ReportListView}

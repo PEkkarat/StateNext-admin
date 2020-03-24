@@ -100,7 +100,7 @@ const getPost = (page, limit, query) => {
 
     if (query) query = "&" + query
 
-    return axios.get(PostApi + `/pages/${page}?_size=${limit}${query}`)
+    return axios.get(PostApi + `/pages/${page}?_size=${limit}${query}&_populate=product`)
 
 }
 
@@ -116,11 +116,11 @@ const getReport = (page, limit, query) => {
 }
 
 const acceptPost = (postId) => {
-    return axios.put(ReportApi + `/${postId}`, {status: "active"})
+    return axios.put(PostApi + `/${postId}`, {status: "active"})
 }
 
 const deletePost = (postId) => {
-    return axios.delete(ReportApi + `/${postId}`)
+    return axios.delete(PostApi + `/${postId}`)
 }
 
 const deleteUser = (userId) => {

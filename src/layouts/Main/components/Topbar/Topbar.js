@@ -61,15 +61,6 @@ const Topbar = props => {
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
-          <IconButton color="4F4F4F">
-            <Badge
-              badgeContent={notifications.length}
-              color="primary"
-              variant="dot"
-            >
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
 
           <IconButton
             className={classes.accountButton}
@@ -77,18 +68,6 @@ const Topbar = props => {
           >
             <AccountCircleIcon />
           </IconButton>
-
-          <RouterLink to="/NewReport">
-            <IconButton color="4F4F4F">
-              <Badge
-                badgeContent={notifications.length}
-                color="primary"
-                variant="dot"
-              >
-                <ReportIcon />
-              </Badge>
-            </IconButton>
-          </RouterLink>
 
         </Hidden>
 
