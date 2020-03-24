@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
 
 const ReportList = () => {
   const classes = useStyles();
-  const [search, setSearch] = useState("")
   const [selectedReport, setSelectedReport] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
@@ -26,26 +25,27 @@ const ReportList = () => {
   const [reports, setReports] = useState([])
   const [isOpen, setOpen] = useState(false)
   const [info, setInfo] = useState({})
+  const [type, setType] = useState("all")
 
   const selectionProp = [selectedReport, setSelectedReport]
   const pageProp = [page, setPage]
   const maxProp = [maxSize, setMax]
   const rowsProp = [rowsPerPage, setRowsPerPage]
+  const onType = [type, setType]
 
   useEffect(() => {
 
     fetchData()
 
-  },[rowsPerPage, page, search])
+  },[rowsPerPage, page, type])
 
   const fetchData = async() => {
 
-    let query = search ? `title=$reg=${search}.*` : undefined
-    
+    let query = type !== "all" ? `type=${type}` : undefined
+
     let res = await API.getReport(page + 1, rowsPerPage, query)
 
     let data = res.data
-    console.log(data);
     
     const allTypes = ["feedback", "bug", "user", "post"]
     const allThai = [
@@ -67,8 +67,8 @@ const ReportList = () => {
         type: type,
         name: report.user ? (report.user.name || report.user.email) : "Removed",
         post: report.post,
-        message: report.message
-        
+        message: report.message,
+        photos: report.photos || ["https://i0.wp.com/sygnustv.in.th/wp-content/uploads/2016/11/1-3.jpg?resize=1170%2C659"]
       }
 
     })
@@ -77,15 +77,9 @@ const ReportList = () => {
 
   }
 
-  const onSearch = ({target:{value}}) => {
-
-    setSearch(value)
-
-  }
-
   const onDelete = async() => {
 
-    await Promise.all(selectedReport.map((reportId) => API.getReport(reportId)))
+    await Promise.all(selectedReport.map((reportId) => API.deleteReport(reportId)))
     await fetchData()
 
   }
@@ -106,9 +100,8 @@ const ReportList = () => {
   return (
     <div className={classes.root}>
       <ReportsToolbar
-        onSearch={onSearch}
         onDelete={onDelete}
-
+        onType={onType}
       />
       <div className={classes.content}>
         <ReportsTable

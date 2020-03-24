@@ -59,12 +59,14 @@ const Topbar = props => {
         <div className={classes.flexGrow} />
         <Hidden mdDown>
 
-          <IconButton
-            className={classes.accountButton}
-            color="4F4F4F"
-          >
-            <AccountCircleIcon />
-          </IconButton>
+          <RouterLink to="/sign-in">
+            <IconButton
+              className={classes.accountButton}
+              color="4F4F4F"
+            >
+             <AccountCircleIcon />
+            </IconButton>
+          </RouterLink>
 
         </Hidden>
 

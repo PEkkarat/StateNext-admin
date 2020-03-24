@@ -5,6 +5,7 @@ import * as moment from 'moment'
 const UserApi = config.BACKEND_URL + `/user`
 const PostApi = config.BACKEND_URL + `/posts`
 const ReportApi = config.BACKEND_URL + `/reports`
+const AdminApi = config.BACKEND_URL + `/admin`
 
 const getSummary = async() => {
 
@@ -131,6 +132,31 @@ const deleteReport = (reportId) => {
     return axios.delete(ReportApi + `/${reportId}`)
 }
 
+const login = (username, password) => {
+    return axios.post(AdminApi + `/login`, {username, password})
+}
+
+const logout = () => {
+    return axios.post(AdminApi + `/logout`)
+}
+
+const getAdmins = () => {
+    return axios.get(AdminApi + `/`)
+}
+
+const createAdmin = (username, password) => {
+    // create as root
+    return axios.post(AdminApi , {username, password, role:"5e55d6791de8513784846349"})
+}
+
+const deleteAdmin = (id) => {
+    return axios.delete(AdminApi + `/${id}`)
+}
+
+const getMe = () => {
+    return axios.get(AdminApi + `/me` )
+}
+
 export default {
   
     getSummary,
@@ -141,5 +167,11 @@ export default {
     deletePost,
     deleteUser,
     deleteReport,
+    login,
+    logout,
+    getAdmins,
+    createAdmin,
+    deleteAdmin,
+    getMe
 
 }

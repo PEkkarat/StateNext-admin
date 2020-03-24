@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import { useMediaQuery } from '@material-ui/core';
 
 import { Sidebar, Topbar, Footer } from './components';
+import {useHistory} from 'react-router-dom'
+import API from '../../services'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,6 +27,29 @@ const useStyles = makeStyles(theme => ({
 const Main = props => {
   const { children } = props;
 
+  let history = useHistory()
+
+  // useEffect(() => {
+
+    // const fetch = async() => {
+
+    //   try {
+    //     let res = await API.getMe()
+    //     console.log(res.data);
+    //   } catch (error) {
+    //     history.push("/sign-in")
+    //   }
+      
+    // }
+
+    // fetch()
+    // console.log("fetch");
+    
+
+  // })
+  
+
+
   const classes = useStyles();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
@@ -42,9 +67,6 @@ const Main = props => {
   };
 
   const shouldOpenSidebar = isDesktop ? true : openSidebar;
-
-
-  
 
   return (
     <div

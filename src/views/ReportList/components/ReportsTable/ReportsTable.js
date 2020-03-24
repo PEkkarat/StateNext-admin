@@ -51,19 +51,21 @@ const useStyles = makeStyles(theme => ({
 
 
 const ReportsTable = props => {
-  const { className, users, action, ...rest } = props;
+  const { className, users, action, selectionUser, pageProp, maxProp, rowsProp, ...rest } = props;
 
   const classes = useStyles();
 
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [page, setPage] = useState(0);
+  const [selectedUsers, setSelectedUsers] = selectionUser
+  const [rowsPerPage, setRowsPerPage] = rowsProp
+  const [page, setPage] = pageProp
+  const [maxSize, ] = maxProp
 
   const onMoreInformation = (report) => {
 
     action({
       des: report.message,
-      post: report.post
+      post: report.post,
+      photos: report.photos
     })
 
   }
@@ -180,7 +182,7 @@ const ReportsTable = props => {
       <CardActions className={classes.actions}>
         <TablePagination
           component="div"
-          count={users.length}
+          count={maxSize}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           page={page}

@@ -9,6 +9,7 @@ import { chartjs } from './helpers';
 import theme from './theme';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import validators from './common/validators';
 import Routes from './Routes';
 

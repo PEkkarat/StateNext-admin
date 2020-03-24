@@ -43,11 +43,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ReportsToolbar = props => {
-  const { className, ...rest } = props;
+  const { className, onDelete, onType, ...rest } = props;
 
   const classes = useStyles();
 
-  const [type, setType] = React.useState('all');
+  const [type, setType] = onType
   const [open, setOpen] = React.useState(false);
 
   const handleChange = event => {
@@ -74,11 +74,6 @@ const ReportsToolbar = props => {
 
       <div className={classes.row}>
 
-        <SearchInput
-          className={classes.searchInput}
-          placeholder="ค้นหาประกาศ"
-        />
-
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-controlled-open-select-label">เลือกประเภท</InputLabel>
           <Select
@@ -100,8 +95,9 @@ const ReportsToolbar = props => {
 
         <span className={classes.spacer} />
         <Button
-          color=""
+          color="primary"
           variant="contained"
+          onClick={onDelete}
         >
           ลบ
         </Button>
