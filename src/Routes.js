@@ -15,7 +15,7 @@ import {
   PostList as PostListView,
   NotificationList as NotificationListView,
   ReportList as ReportListView,
-  NewReport as NewReport,
+  NewReport ,
 
 
 

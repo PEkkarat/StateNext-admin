@@ -19,8 +19,10 @@ import {
   Tooltip,
   TableSortLabel
 } from '@material-ui/core';
+
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import uuid from 'uuid/v1';
+
 
 import mockData from './data';
 import { StatusBullet } from 'components';
