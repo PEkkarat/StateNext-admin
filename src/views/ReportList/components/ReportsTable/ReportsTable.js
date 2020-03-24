@@ -8,20 +8,17 @@ import {
   Card,
   CardActions,
   CardContent,
-  Avatar,
   Checkbox,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Typography,
   TablePagination,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText
+  Button,
 } from '@material-ui/core';
+
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import { getInitials } from 'helpers';
 import SaveFile from './components/SaveFile';
@@ -54,13 +51,22 @@ const useStyles = makeStyles(theme => ({
 
 
 const ReportsTable = props => {
-  const { className, users, ...rest } = props;
+  const { className, users, action, ...rest } = props;
 
   const classes = useStyles();
 
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
+
+  const onMoreInformation = (report) => {
+
+    action({
+      des: report.message,
+      post: report.post
+    })
+
+  }
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -130,9 +136,7 @@ const ReportsTable = props => {
                   <TableCell></TableCell>
                   <TableCell>ประเภท</TableCell>
                   <TableCell>ผู้ใช้</TableCell>
-                  <TableCell>ตัวอย่างไฟล์</TableCell>
-                  <TableCell>ดาวน์โหลดไฟล์</TableCell>
-
+                  <TableCell></TableCell>
 
                 </TableRow>
               </TableHead>
@@ -157,39 +161,13 @@ const ReportsTable = props => {
                     <TableCell>{user.type}</TableCell>
                     <TableCell>{user.name}</TableCell>
                     <TableCell>
-                      <Avatar
-                        className={classes.image}
-                        src={user.avatarUrl}
-                        
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => onMoreInformation(user)}
                       >
-                        {getInitials(user.name)}
-                      </Avatar>
-                      
-                      {/* <List>
-                        {avatars.map((avatar, i) => (
-                          <ListItem
-                            divider={i < avatars.length - 1}
-                            key={avatar.id}
-                          >
-                            <ListItemAvatar>
-                              <img
-                                alt="Avatar"
-                                className={classes.image}
-                                src={avatar.imageUrl}
-                              />
-                            </ListItemAvatar>
-                            <ListItemText
-                              primary={avatar.name}
-                              
-                            />
-                            
-                          </ListItem>
-                        ))}
-                      </List> */}
-                    </TableCell>
-                    <TableCell>
-                      <SaveFile />
-                      
+                        <AssignmentIcon /> information
+                      </Button>
                     </TableCell>
 
                   </TableRow>

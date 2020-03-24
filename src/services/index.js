@@ -111,7 +111,7 @@ const getReport = (page, limit, query) => {
 
     if (query) query = "&" + query
 
-    return axios.get(ReportApi + `/pages/${page}?_size=${limit}${query}`)
+    return axios.get(ReportApi + `/pages/${page}?_size=${limit}${query}&_populate=post user`)
     
 }
 

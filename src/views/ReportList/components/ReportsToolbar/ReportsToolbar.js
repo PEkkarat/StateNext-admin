@@ -47,7 +47,7 @@ const ReportsToolbar = props => {
 
   const classes = useStyles();
 
-  const [type, setType] = React.useState('');
+  const [type, setType] = React.useState('all');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = event => {
@@ -89,15 +89,12 @@ const ReportsToolbar = props => {
             onOpen={handleOpen}
             value={type}
             onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>ไม่เลือก</em>
-            </MenuItem>
-            
-            <MenuItem value={5}>ทั้งหมด</MenuItem>
-            <MenuItem value={10}>ให้ข้อเสนอแนะเกี่ยวกับผลิตภัณฑ์</MenuItem>
-            <MenuItem value={20}>รายงานบัก</MenuItem>
-            <MenuItem value={30}>รายงานผู้ใช้</MenuItem>
+          >           
+            <MenuItem value={"all"}>ทั้งหมด</MenuItem>
+            <MenuItem value={"feedback"}>ให้ข้อเสนอแนะเกี่ยวกับผลิตภัณฑ์</MenuItem>
+            <MenuItem value={"bug"}>รายงานบัก</MenuItem>
+            <MenuItem value={"user"}>รายงานผู้ใช้</MenuItem>
+            <MenuItem value={"post"}>รายงานเกี่ยวกับประกาศ</MenuItem>
           </Select>
         </FormControl>
 
