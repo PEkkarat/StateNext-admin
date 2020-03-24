@@ -90,7 +90,7 @@ const TotalPost = props => {
             className={classes.differenceValue}
             variant="body2"
           >
-            {percent}%
+            {parseFloat(percent).toFixed(2)}%
           </Typography>
           <Typography
             className={classes.caption}

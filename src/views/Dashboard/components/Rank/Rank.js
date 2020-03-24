@@ -86,7 +86,7 @@ const Rank = props => {
         //     refresh
         //   </Button>
         // }
-        title="3 อับดับที่มีการเข้าชมสูงสุด"
+        title="5 อับดับที่มีการเข้าชมสูงสุด"
       />
       <Divider />
       <CardContent className={classes.content}>
