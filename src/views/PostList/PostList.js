@@ -57,6 +57,7 @@ const PostList = () => {
         id: post._id,
         title: post.title || "-",
         type: post.product ? post.product.residential_type: "Removed",
+        contract: post.user ? (post.user.phone || post.user.email) : "Removed",
         status : post.status
       }
 

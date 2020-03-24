@@ -100,7 +100,7 @@ const getPost = (page, limit, query) => {
 
     if (query) query = "&" + query
 
-    return axios.get(PostApi + `/pages/${page}?_size=${limit}${query}&_populate=product`)
+    return axios.get(PostApi + `/pages/${page}?_size=${limit}${query}&_populate=product user`)
 
 }
 

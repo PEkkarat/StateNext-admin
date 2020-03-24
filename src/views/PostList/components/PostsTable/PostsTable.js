@@ -117,6 +117,7 @@ const PostsTable = props => {
                   </TableCell>
                   <TableCell>ประกาศ</TableCell>
                   <TableCell>ประเภท</TableCell>
+                  <TableCell>ติดต่อ</TableCell>
                   <TableCell>สถานะ</TableCell>
                 </TableRow>
               </TableHead>
@@ -139,6 +140,7 @@ const PostsTable = props => {
                     
                     <TableCell>{user.title}</TableCell>
                     <TableCell>{user.type}</TableCell>
+                    <TableCell>{user.contract}</TableCell>
                     <TableCell>{user.status}</TableCell>
                   </TableRow>
                 ))}

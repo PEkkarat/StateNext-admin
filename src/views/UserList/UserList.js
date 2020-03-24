@@ -46,7 +46,7 @@ const UserList = () => {
         name: user.name || "-",
         email: user.email,
         phone: user.phone || "-",
-        avatarUrl: user.photo || '/images/avatars/avatar_3.png',
+        avatarUrl: user.photo || '/images/avatars/avatar_1.png',
         createdAt: new Date(user.createdAt).getTime(),
         status : 'ปกติ'
       }
