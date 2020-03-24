@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/styles';
+import API from '../../../../services'
 import {
   Card,
   CardActions,
@@ -18,6 +19,7 @@ import {
   Typography,
   TablePagination
 } from '@material-ui/core';
+import uuid from 'uuid/v1';
 
 import { getInitials } from 'helpers';
 
@@ -42,16 +44,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersTable = props => {
-  const { className, users, ...rest } = props;
+  const { className, selectionUser,users, pageProp, maxProp, rowsProp,  ...rest } = props;
 
   const classes = useStyles();
-
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [page, setPage] = useState(0);
+  const [selectedUsers, setSelectedUsers] = selectionUser
+  const [rowsPerPage, setRowsPerPage] = rowsProp
+  const [page, setPage] = pageProp
+  const [maxSize, ] = maxProp
 
   const handleSelectAll = event => {
-    const { users } = props;
 
     let selectedUsers;
 
@@ -116,10 +117,8 @@ const UsersTable = props => {
                   </TableCell>
                   <TableCell>ชื่อ</TableCell>
                   <TableCell>อีเมล</TableCell>
-                  <TableCell>ที่อยู่</TableCell>
                   <TableCell>เบอร์โทรศัพท์</TableCell>
                   <TableCell>วันที่ลงทะเบียน</TableCell>
-                  <TableCell>สถานะ</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -150,15 +149,10 @@ const UsersTable = props => {
                       </div>
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
-                    <TableCell>
-                      {user.address.city}, {user.address.state},{' '}
-                      {user.address.country}
-                    </TableCell>
                     <TableCell>{user.phone}</TableCell>
                     <TableCell>
                       {moment(user.createdAt).format('DD/MM/YYYY')}
                     </TableCell>
-                    <TableCell>{user.status}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -169,7 +163,7 @@ const UsersTable = props => {
       <CardActions className={classes.actions}>
         <TablePagination
           component="div"
-          count={users.length}
+          count={maxSize}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           page={page}

@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersToolbar = props => {
-  const { className, ...rest } = props;
+  const { className, onSearch, onDelete, ...rest } = props;
 
   const classes = useStyles();
 
@@ -48,12 +48,14 @@ const UsersToolbar = props => {
         <SearchInput
           className={classes.searchInput}
           placeholder="ค้นหาผู้ใช้"
+          onChange={onSearch}
         />
         <span className={classes.spacer} />
 
         <Button
           color="primary"
           variant="contained"
+          onClick={onDelete}
         >
           ลบ
         </Button>
