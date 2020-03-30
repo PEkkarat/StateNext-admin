@@ -6,6 +6,7 @@ import API from '../../services'
 import { PostsToolbar as ReportsToolbar, PostsTable as ReportsTable } from './components';
 import Modal from './components/modal'
 import Information from './components/normalInformation'
+import ConfirmModal from 'components/ConfirmModal'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ReportList = () => {
+  const [isCon , setCon] = useState(false)
   const classes = useStyles();
   const [selectedReport, setSelectedReport] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -68,7 +70,7 @@ const ReportList = () => {
         name: report.user ? (report.user.name || report.user.email) : "Removed",
         post: report.post,
         message: report.message,
-        photos: report.photos || ["https://i0.wp.com/sygnustv.in.th/wp-content/uploads/2016/11/1-3.jpg?resize=1170%2C659"]
+        photos: report.photos || []
       }
 
     })
@@ -81,13 +83,18 @@ const ReportList = () => {
 
     await Promise.all(selectedReport.map((reportId) => API.deleteReport(reportId)))
     await fetchData()
+    setSelectedReport([])
+    setCon(false)
 
+  }
+
+  const onConfirm = () => {
+    if (selectedReport.length > 0) setCon(true)
   }
 
   const openModal = (info) => {
     
     setInfo(info)
-    console.log(info);
     
     setOpen(true)
 
@@ -100,7 +107,7 @@ const ReportList = () => {
   return (
     <div className={classes.root}>
       <ReportsToolbar
-        onDelete={onDelete}
+        onDelete={onConfirm}
         onType={onType}
       />
       <div className={classes.content}>
@@ -117,6 +124,15 @@ const ReportList = () => {
       <Modal isOpen={isOpen} onClose={closeModal} >
         <Information info={info} />
       </Modal>
+
+      <ConfirmModal
+        isOpen={isCon}
+        onClose={() => setCon(false)}
+        cancel={() => setCon(false)}
+        ok={onDelete}
+        text={`Are you sure to delete ${selectedReport.length} reports`}
+        title={`Remove report!`}
+      />
 
     </div>
   );
