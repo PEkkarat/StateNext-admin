@@ -83,7 +83,10 @@ const PostList = () => {
 
   const onApprove = async () => {
 
-    await Promise.all(selectedPosts.map((postId) => API.acceptPost(postId)))
+    await Promise.all(selectedPosts.map(async(postId) => {
+      await API.acceptPost(postId)
+      API.boardcastPost(postId)
+    }))
     await fetchData()
     setSelectedPosts([])
     setOpen(false)

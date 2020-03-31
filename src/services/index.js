@@ -1,11 +1,22 @@
 import axios from 'axios'
 import config from '../configs/network'
 import * as moment from 'moment'
+import socketIOClient from 'socket.io-client'
 
 const UserApi = config.BACKEND_URL + `/user`
 const PostApi = config.BACKEND_URL + `/posts`
 const ReportApi = config.BACKEND_URL + `/reports`
 const AdminApi = config.BACKEND_URL + `/admin`
+const NotificationApi = config.BACKEND_URL + `/notification`
+
+let socket = socketIOClient(config.BACKEND_URL, {
+    reconnection: true
+})
+
+socket.on('connect', ()=>{
+    console.log("connected");
+    
+})
 
 const getSummary = async() => {
 
@@ -157,6 +168,10 @@ const getMe = () => {
     return axios.get(AdminApi + `/me` )
 }
 
+const boardcastPost = (postId) => {
+    socket.emit("send-notification-post", {post:postId}, (res) => console.log(res) )
+}
+
 export default {
   
     getSummary,
@@ -172,6 +187,7 @@ export default {
     getAdmins,
     createAdmin,
     deleteAdmin,
-    getMe
+    getMe,
+    boardcastPost
 
 }
