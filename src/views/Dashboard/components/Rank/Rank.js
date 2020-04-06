@@ -59,6 +59,7 @@ const Rank = props => {
   const classes = useStyles();
 
   post = post || []
+
   let orders = post.map((p, index) => {
 
     return {
@@ -68,7 +69,8 @@ const Rank = props => {
           name: p.title
         },
         createdAt: new Date(p.createdAt).getTime(),
-        status: p.status
+        status: p.status,
+        view: p.count
     }
 
   })
@@ -113,6 +115,7 @@ const Rank = props => {
                     </Tooltip>
                   </TableCell>
                   <TableCell>สถานะ</TableCell>
+                  <TableCell>จำนวนการเข้าชม</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -136,6 +139,7 @@ const Rank = props => {
                         {order.status}
                       </div>
                     </TableCell>
+                    <TableCell>{order.view}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 
 import { PostsToolbar, PostsTable } from './components';
 import API from '../../services'
+import ConfirmModal from 'components/ConfirmModal'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,6 +17,8 @@ const useStyles = makeStyles(theme => ({
 const PostList = () => {
   const classes = useStyles();
 
+  const [isOpen , setOpen] = useState(false)
+  const [actionType, setActionType] = useState({})
   const [search, setSearch] = useState("")
   const [selectedPosts, setSelectedPosts] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -73,10 +76,20 @@ const PostList = () => {
 
   }
 
+  const onConfirm = (type) => {
+    setActionType(type)
+    if (selectedPosts.length > 0) setOpen(true)
+  }
+
   const onApprove = async () => {
 
-    await Promise.all(selectedPosts.map((postId) => API.acceptPost(postId)))
+    await Promise.all(selectedPosts.map(async(postId) => {
+      await API.acceptPost(postId)
+      API.boardcastPost(postId)
+    }))
     await fetchData()
+    setSelectedPosts([])
+    setOpen(false)
 
   }
 
@@ -84,6 +97,8 @@ const PostList = () => {
 
     await Promise.all(selectedPosts.map((postId) => API.deletePost(postId)))
     await fetchData()
+    setSelectedPosts([])
+    setOpen(false)
 
   }
 
@@ -93,7 +108,13 @@ const PostList = () => {
 
   return (
     <div className={classes.root}>
-      <PostsToolbar onSearch={onSearch} onApprove={onApprove} onDelete={onDelete} onPendingOnly={onPending} pendingOnly={isPending} />
+      <PostsToolbar
+        onSearch={onSearch}
+        onApprove={() => onConfirm("approve")}
+        onDelete={() => onConfirm("delete")} 
+        onPendingOnly={onPending} 
+        pendingOnly={isPending}
+      />
       <div className={classes.content}>
         <PostsTable
           selectionUser={selectionProp}
@@ -103,6 +124,17 @@ const PostList = () => {
           rowsProp={rowsProp}
         />
       </div>
+      <ConfirmModal
+        isOpen={isOpen}
+        onClose={() => setOpen(false)}
+        cancel={() => setOpen(false)}
+        ok={() => {
+          if (actionType === "approve") onApprove()
+          else onDelete()
+        }}
+        text={`Are you sure to ${actionType} ${selectedPosts.length} posts`}
+        title={`${actionType} post`}
+      />
     </div>
   );
 };

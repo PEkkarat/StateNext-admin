@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 
 import { UsersToolbar, UsersTable } from './components';
 import API from '../../services'
+import ConfirmModal from 'components/ConfirmModal'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles(theme => ({
 const UserList = () => {
   const classes = useStyles();
 
+  const [isOpen , setOpen] = useState(false)
   const [search, setSearch] = useState("")
   const [selectedUsers, setSelectedUsers] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -63,16 +65,22 @@ const UserList = () => {
 
   }
 
+  const onConfirm = () => {
+    if (selectedUsers.length > 0) setOpen(true)
+  }
+
   const onDelete = async() => {
 
     await Promise.all(selectedUsers.map((userId) => API.deleteUser(userId)))
     await fetchData()
+    setSelectedUsers([])
+    setOpen(false)
 
   }
 
   return (
     <div className={classes.root}>
-      <UsersToolbar onSearch={onSearch} onDelete={onDelete} />
+      <UsersToolbar onSearch={onSearch} onDelete={onConfirm} />
       <div className={classes.content}>
         <UsersTable
           selectionUser={[selectedUsers, setSelectedUsers]}
@@ -82,6 +90,14 @@ const UserList = () => {
           rowsProp={rowsProp}
         />
       </div>
+      <ConfirmModal
+        isOpen={isOpen}
+        onClose={() => setOpen(false)}
+        cancel={() => setOpen(false)}
+        ok={onDelete}
+        text={`Are you sure to delete ${selectedUsers.length} account`}
+        title={`Remove user account!`}
+      />
     </div>
   );
 };

@@ -18,7 +18,6 @@ import {
   Typography,
   TablePagination
 } from '@material-ui/core';
-import uuid from 'uuid/v1';
 
 import { getInitials } from 'helpers';
 
