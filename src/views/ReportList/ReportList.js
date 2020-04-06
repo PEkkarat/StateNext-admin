@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ReportList = () => {
-  const [isCon , setCon] = useState(false)
+  const [isCon, setCon] = useState(false)
   const classes = useStyles();
   const [selectedReport, setSelectedReport] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -39,16 +39,16 @@ const ReportList = () => {
 
     fetchData()
 
-  },[rowsPerPage, page, type])
+  }, [rowsPerPage, page, type])
 
-  const fetchData = async() => {
+  const fetchData = async () => {
 
     let query = type !== "all" ? `type=${type}` : undefined
 
     let res = await API.getReport(page + 1, rowsPerPage, query)
 
     let data = res.data
-    
+
     const allTypes = ["feedback", "bug", "user", "post"]
     const allThai = [
       "ให้ข้อเสนอแนะเกี่ยวกับผลิตภัณฑ์",
@@ -79,7 +79,7 @@ const ReportList = () => {
 
   }
 
-  const onDelete = async() => {
+  const onDelete = async () => {
 
     await Promise.all(selectedReport.map((reportId) => API.deleteReport(reportId)))
     await fetchData()
@@ -93,9 +93,9 @@ const ReportList = () => {
   }
 
   const openModal = (info) => {
-    
+
     setInfo(info)
-    
+
     setOpen(true)
 
   }

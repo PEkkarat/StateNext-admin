@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
@@ -38,14 +38,14 @@ const Notifications = props => {
 
   const classes = useStyles();
   const [admins, setAdmins] = useState([])
-  const [ form, setForm ] = useState({
-    con:"",
-    password:"",
-    username:""
+  const [form, setForm] = useState({
+    con: "",
+    password: "",
+    username: ""
   })
   const [me, setMe] = useState({})
 
-  const fetch = async() => {
+  const fetch = async () => {
 
     let res = await API.getAdmins()
     let me = await API.getMe()
@@ -61,7 +61,7 @@ const Notifications = props => {
 
   }, [admins])
 
-  const formChange = ({target:{value, name}}) => {
+  const formChange = ({ target: { value, name } }) => {
 
     setForm({
       ...form,
@@ -76,17 +76,17 @@ const Notifications = props => {
     let newForm = {}
 
     att_name.map((name) => {
-        newForm = {
-          ...newForm,
-          [name]:""
-        }
+      newForm = {
+        ...newForm,
+        [name]: ""
+      }
     })
 
     setForm(att_name)
 
   }
 
-  const createAdmin = async() => {
+  const createAdmin = async () => {
 
     if (!form.username || !form.password || !form.con) return
     if (form.password !== form.con) return
@@ -98,7 +98,7 @@ const Notifications = props => {
 
   }
 
-  const deleteAdmin = async(id) => {
+  const deleteAdmin = async (id) => {
 
     await API.deleteAdmin(id)
 
@@ -134,7 +134,7 @@ const Notifications = props => {
               >
                 Administrators
               </Typography>
-              
+
               {
                 admins.map((admin) => {
 

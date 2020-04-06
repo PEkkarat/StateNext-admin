@@ -42,13 +42,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UsersTable = props => {
-  const { className, selectionUser,users, pageProp, maxProp, rowsProp,  ...rest } = props;
+  const { className, selectionUser, users, pageProp, maxProp, rowsProp, ...rest } = props;
 
   const classes = useStyles();
   const [selectedUsers, setSelectedUsers] = selectionUser
   const [rowsPerPage, setRowsPerPage] = rowsProp
   const [page, setPage] = pageProp
-  const [maxSize, ] = maxProp
+  const [maxSize,] = maxProp
 
   const handleSelectAll = event => {
 

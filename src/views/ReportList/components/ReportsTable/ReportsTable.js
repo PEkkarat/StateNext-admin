@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import {  makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 import {
   Card,
@@ -58,7 +58,7 @@ const ReportsTable = props => {
   const [selectedUsers, setSelectedUsers] = selectionUser
   const [rowsPerPage, setRowsPerPage] = rowsProp
   const [page, setPage] = pageProp
-  const [maxSize, ] = maxProp
+  const [maxSize,] = maxProp
 
   const onMoreInformation = (report) => {
 

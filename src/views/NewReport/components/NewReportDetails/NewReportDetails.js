@@ -31,9 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 const NewReportDetails = props => {
   const { className, ...rest } = props;
-
   const classes = useStyles();
-
 
   return (
     <Card
@@ -43,8 +41,8 @@ const NewReportDetails = props => {
       <form>
 
         <CardContent>
-          
-          
+
+
           <Grid
             container
             spacing={4}

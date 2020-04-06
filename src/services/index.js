@@ -13,12 +13,12 @@ let socket = socketIOClient(config.BACKEND_URL, {
     reconnection: true
 })
 
-socket.on('connect', ()=>{
+socket.on('connect', () => {
     console.log("connected");
-    
+
 })
 
-const getSummary = async() => {
+const getSummary = async () => {
 
     let twoMonthAgo = moment().subtract(2, 'months').toISOString()
     let monthAgo = moment().subtract(1, 'months').toISOString()
@@ -117,18 +117,18 @@ const getPost = (page, limit, query) => {
 }
 
 const getReport = (page, limit, query) => {
- 
+
     if (!page) page = 1
     if (!limit) limit = 10
 
     if (query) query = "&" + query
 
     return axios.get(ReportApi + `/pages/${page}?_size=${limit}${query}&_populate=post user`)
-    
+
 }
 
 const acceptPost = (postId) => {
-    return axios.put(PostApi + `/${postId}`, {status: "active"})
+    return axios.put(PostApi + `/${postId}`, { status: "active" })
 }
 
 const deletePost = (postId) => {
@@ -144,7 +144,7 @@ const deleteReport = (reportId) => {
 }
 
 const login = (username, password) => {
-    return axios.post(AdminApi + `/login`, {username, password})
+    return axios.post(AdminApi + `/login`, { username, password })
 }
 
 const logout = () => {
@@ -157,7 +157,7 @@ const getAdmins = () => {
 
 const createAdmin = (username, password) => {
     // create as root
-    return axios.post(AdminApi , {username, password, role:"5e55d6791de8513784846349"})
+    return axios.post(AdminApi, { username, password, role: "5e55d6791de8513784846349" })
 }
 
 const deleteAdmin = (id) => {
@@ -165,15 +165,15 @@ const deleteAdmin = (id) => {
 }
 
 const getMe = () => {
-    return axios.get(AdminApi + `/me` )
+    return axios.get(AdminApi + `/me`)
 }
 
 const boardcastPost = (postId) => {
-    socket.emit("send-notification-post", {post:postId}, (res) => console.log(res) )
+    socket.emit("send-notification-post", { post: postId }, (res) => console.log(res))
 }
 
 export default {
-  
+
     getSummary,
     getUser,
     getPost,

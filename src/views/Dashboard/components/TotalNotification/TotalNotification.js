@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 const useStyles = makeStyles(theme => ({
@@ -41,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TotalNotification = props => {
-  const { className, notification,...rest } = props;
+  const { className, notification, ...rest } = props;
 
   const classes = useStyles();
   const count = notification ? notification.count : 0

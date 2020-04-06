@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 const UserList = () => {
   const classes = useStyles();
 
-  const [isOpen , setOpen] = useState(false)
+  const [isOpen, setOpen] = useState(false)
   const [search, setSearch] = useState("")
   const [selectedUsers, setSelectedUsers] = useState([])
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -33,9 +33,9 @@ const UserList = () => {
 
     fetchData()
 
-  },[rowsPerPage, page, search])
+  }, [rowsPerPage, page, search])
 
-  const fetchData = async() => {
+  const fetchData = async () => {
     let query = search ? `email=$reg=${search}.*` : undefined
     let res = await API.getUser(page + 1, rowsPerPage, query)
 
@@ -50,7 +50,7 @@ const UserList = () => {
         phone: user.phone || "-",
         avatarUrl: user.photo || '/images/avatars/avatar_1.png',
         createdAt: new Date(user.createdAt).getTime(),
-        status : 'ปกติ'
+        status: 'ปกติ'
       }
 
     })
@@ -59,7 +59,7 @@ const UserList = () => {
 
   }
 
-  const onSearch = ({target:{value}}) => {
+  const onSearch = ({ target: { value } }) => {
 
     setSearch(value)
 
@@ -69,7 +69,7 @@ const UserList = () => {
     if (selectedUsers.length > 0) setOpen(true)
   }
 
-  const onDelete = async() => {
+  const onDelete = async () => {
 
     await Promise.all(selectedUsers.map((userId) => API.deleteUser(userId)))
     await fetchData()

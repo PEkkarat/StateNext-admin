@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import API from '../../services'
@@ -13,7 +13,7 @@ import {
   // UsersByDevice,
   LatestUsers,
   Rank,
-  
+
 } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -26,14 +26,14 @@ const Dashboard = () => {
 
   const [summary, setSummary] = useState({})
   const classes = useStyles();
-  
+
   useEffect(() => {
 
-    const fetchSummary = async() => {
-      
+    const fetchSummary = async () => {
+
       let sum = await API.getSummary()
       setSummary(sum)
-      
+
     }
 
     fetchSummary()
@@ -41,7 +41,7 @@ const Dashboard = () => {
   }, [])
 
   console.log(summary);
-  
+
 
   return (
     <div className={classes.root}>
@@ -56,9 +56,9 @@ const Dashboard = () => {
           xl={4}
           xs={12}
         >
-        
+
           <TotalUsers user={summary.user} />
-        
+
         </Grid>
         <Grid
           item
@@ -88,7 +88,7 @@ const Dashboard = () => {
           xs={12}
         >
           <TotalReport report={summary.report} />
-          {/* <TotalProfit /> */}
+
         </Grid>
         <Grid
           item
@@ -109,7 +109,7 @@ const Dashboard = () => {
         >
           <LatestUsers newUser={summary.newUser} />
         </Grid> */}
-        
+
         <Grid
           item
           lg={12}

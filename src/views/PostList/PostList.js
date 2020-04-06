@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 const PostList = () => {
   const classes = useStyles();
 
-  const [isOpen , setOpen] = useState(false)
+  const [isOpen, setOpen] = useState(false)
   const [actionType, setActionType] = useState({})
   const [search, setSearch] = useState("")
   const [selectedPosts, setSelectedPosts] = useState([])
@@ -36,9 +36,9 @@ const PostList = () => {
 
     fetchData()
 
-  },[rowsPerPage, page, search, isPending])
+  }, [rowsPerPage, page, search, isPending])
 
-  const fetchData = async() => {
+  const fetchData = async () => {
 
     let query = search ? `title=$reg=${search}.*` : undefined
 
@@ -48,20 +48,20 @@ const PostList = () => {
       else query = ""
       query += q
     }
-    
+
     let res = await API.getPost(page + 1, rowsPerPage, query)
 
     let data = res.data
-    
+
     setMax(data.total)
     let posts = data.items.map((post) => {
 
       return {
         id: post._id,
         title: post.title || "-",
-        type: post.product ? post.product.residential_type: "Removed",
+        type: post.product ? post.product.residential_type : "Removed",
         contract: post.user ? (post.user.phone || post.user.email) : "Removed",
-        status : post.status
+        status: post.status
       }
 
     })
@@ -70,7 +70,7 @@ const PostList = () => {
 
   }
 
-  const onSearch = ({target:{value}}) => {
+  const onSearch = ({ target: { value } }) => {
 
     setSearch(value)
 
@@ -83,7 +83,7 @@ const PostList = () => {
 
   const onApprove = async () => {
 
-    await Promise.all(selectedPosts.map(async(postId) => {
+    await Promise.all(selectedPosts.map(async (postId) => {
       await API.acceptPost(postId)
       API.boardcastPost(postId)
     }))
@@ -93,7 +93,7 @@ const PostList = () => {
 
   }
 
-  const onDelete = async() => {
+  const onDelete = async () => {
 
     await Promise.all(selectedPosts.map((postId) => API.deletePost(postId)))
     await fetchData()
@@ -111,8 +111,8 @@ const PostList = () => {
       <PostsToolbar
         onSearch={onSearch}
         onApprove={() => onConfirm("approve")}
-        onDelete={() => onConfirm("delete")} 
-        onPendingOnly={onPending} 
+        onDelete={() => onConfirm("delete")}
+        onPendingOnly={onPending}
         pendingOnly={isPending}
       />
       <div className={classes.content}>

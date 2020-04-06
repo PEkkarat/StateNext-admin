@@ -42,7 +42,7 @@ const UsersToolbar = props => {
         <span className={classes.spacer} />
         <Button className={classes.importButton}></Button>
         <Button className={classes.exportButton}></Button>
-        
+
       </div>
       <div className={classes.row}>
         <SearchInput

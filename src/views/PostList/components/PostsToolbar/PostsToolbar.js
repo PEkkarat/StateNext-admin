@@ -61,7 +61,7 @@ const PostsToolbar = props => {
             />
           }
           label="Pending Only"
-        />  
+        />
 
         <span className={classes.spacer} />
 
@@ -71,7 +71,6 @@ const PostsToolbar = props => {
           variant="contained"
           onClick={onDelete}
         >
-
           ลบ
         </Button>
         <Button

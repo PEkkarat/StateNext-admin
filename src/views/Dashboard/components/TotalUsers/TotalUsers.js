@@ -8,7 +8,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
 
 const TotalUsers = props => {
-  let { className, user , ...rest } = props;
+  let { className, user, ...rest } = props;
 
   user = user || {}
   const numberUser = user.max || 0
@@ -42,7 +42,7 @@ const TotalUsers = props => {
       alignItems: 'center'
     },
     differenceIcon: {
-      color:  percent >= 0 ? theme.palette.success.dark : theme.palette.error.dark
+      color: percent >= 0 ? theme.palette.success.dark : theme.palette.error.dark
     },
     differenceValue: {
       color: theme.palette.success.dark,
@@ -82,9 +82,9 @@ const TotalUsers = props => {
         <div className={classes.difference}>
           {
             percent >= 0 ?
-            <ArrowUpwardIcon className={classes.differenceIcon} />
-            :
-            <ArrowDownwardIcon className={classes.differenceIcon} />
+              <ArrowUpwardIcon className={classes.differenceIcon} />
+              :
+              <ArrowDownwardIcon className={classes.differenceIcon} />
           }
           <Typography
             className={classes.differenceValue}
