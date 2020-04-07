@@ -25,7 +25,7 @@ const index = ({info}) => {
                 </div>
             }
             {
-                photos && 
+                photos && photos.length > 0 && 
                 <div>
                     <h5>
                         ภาพประกอบ
@@ -45,7 +45,7 @@ const PhotoCarousel = ({photos}) => {
             {
                 photos.map((photo) => {
                     return (
-                        <Carousel.Item>
+                        <Carousel.Item style={{height:"300px", width:"400px", objectFit:"cover"}}>
                             <img
                             className="d-block w-100"
                             src={photo}
