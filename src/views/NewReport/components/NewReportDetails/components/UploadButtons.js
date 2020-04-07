@@ -28,7 +28,7 @@ export default function UploadButtons() {
       />
       <label htmlFor="contained-button-file">
         <Button variant="contained" color="none" component="span">
-          <PublishIcon/>
+          <PublishIcon />
           อัพโหลดไฟล์
         </Button>
       </label>

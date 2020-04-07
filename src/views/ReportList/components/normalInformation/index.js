@@ -1,13 +1,13 @@
 import React from 'react'
 import { Carousel } from 'react-bootstrap'
 
-const index = ({info}) => {
-    
+const index = ({ info }) => {
+
     const { des, photos, post } = info
     console.log(photos);
-    
+
     return (
-        <div style={{display:"grid", gridGap:"24px"}}>
+        <div style={{ display: "grid", gridGap: "24px" }}>
             <h1>Information</h1>
             <div>
                 <h5>ข้อความ</h5>
@@ -33,23 +33,23 @@ const index = ({info}) => {
                     <PhotoCarousel photos={photos} />
                 </div>
             }
-            
+
         </div>
     )
 }
 
-const PhotoCarousel = ({photos}) => {
+const PhotoCarousel = ({ photos }) => {
 
-    return(
+    return (
         <Carousel>
             {
                 photos.map((photo) => {
                     return (
                         <Carousel.Item style={{height:"300px", width:"400px", objectFit:"cover"}}>
                             <img
-                            className="d-block w-100"
-                            src={photo}
-                            alt="report"
+                                className="d-block w-100"
+                                src={photo}
+                                alt="report"
                             />
                         </Carousel.Item>
                     )

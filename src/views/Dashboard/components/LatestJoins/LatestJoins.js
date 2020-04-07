@@ -11,10 +11,8 @@ import {
   Divider,
   Button
 } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import palette from 'theme/palette';
 import moment from 'moment'
-// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import { options } from './chart';
 
@@ -32,11 +30,10 @@ const useStyles = makeStyles(() => ({
 const LatestJoins = props => {
   const { className, acquisition, ...rest } = props;
 
-
   let labels = []
   let currentWeek = []
   let prevWeek = []
-  let prevDay = [5,4,3,2,1,0]
+  let prevDay = [5, 4, 3, 2, 1, 0]
 
   const findDay = (targetDay) => {
 
@@ -46,7 +43,7 @@ const LatestJoins = props => {
 
       let monthlyaccess = acquisition[0].monthlyaccess
       monthlyaccess = monthlyaccess.filter((ma) => ma.month == targetDay.format("M"))
-      
+
       if (monthlyaccess.length < 1) return 0
 
       let dailyusage = monthlyaccess[0].dailyusage
@@ -54,7 +51,7 @@ const LatestJoins = props => {
 
       if (dailyusage.length < 1) return 0
 
-      let count= dailyusage[0].count
+      let count = dailyusage[0].count
       return count
 
     }
@@ -70,7 +67,7 @@ const LatestJoins = props => {
 
     let currentJoin = findDay(targetDay)
     let prevJoin = findDay(prevDay)
-    
+
     currentWeek.push(currentJoin)
     prevWeek.push(prevJoin)
 

@@ -49,7 +49,7 @@ const PostsTable = props => {
   const [selectedUsers, setSelectedUsers] = selectionUser
   const [rowsPerPage, setRowsPerPage] = rowsProp
   const [page, setPage] = pageProp
-  const [maxSize, ] = maxProp
+  const [maxSize,] = maxProp
 
   const handleSelectAll = event => {
     const { users } = props;
@@ -137,7 +137,7 @@ const PostsTable = props => {
                         value="true"
                       />
                     </TableCell>
-                    
+
                     <TableCell>{user.title}</TableCell>
                     <TableCell>{user.type}</TableCell>
                     <TableCell>{user.contract}</TableCell>
